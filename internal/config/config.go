@@ -14,6 +14,7 @@ type Config struct {
 	AppEnv                      string
 	AppHost                     string
 	AppPort                     string
+	AppName                     string
 	TelegramBotToken            string
 	TelegramAllowedIds          []int64
 	DigiflazzBaseUrl            string
@@ -51,6 +52,7 @@ func MustLoadConfig() {
 		AppEnv:                      os.Getenv("APP_ENV"),
 		AppHost:                     os.Getenv("APP_HOST"),
 		AppPort:                     os.Getenv("APP_PORT"),
+		AppName:                     os.Getenv("APP_NAME"),
 		TelegramBotToken:            os.Getenv("TELEGRAM_BOT_TOKEN"),
 		TelegramAllowedIds:          telegramAllowedIds,
 		DigiflazzBaseUrl:            os.Getenv("DIGIFLAZZ_BASE_URL"),
@@ -74,6 +76,9 @@ func MustLoadConfig() {
 	}
 	if Cfg.AppPort == "" {
 		log.Fatal("missing APP_PORT")
+	}
+	if Cfg.AppName == "" {
+		log.Fatal("missing APP_NAME")
 	}
 	if Cfg.TelegramBotToken == "" {
 		log.Fatal("missing TELEGRAM_BOT_TOKEN")

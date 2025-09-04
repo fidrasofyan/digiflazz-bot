@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/fidrasofyan/digiflazz-bot/database"
+	"github.com/fidrasofyan/digiflazz-bot/internal/config"
 	"github.com/fidrasofyan/digiflazz-bot/internal/types"
 	"github.com/fidrasofyan/digiflazz-bot/internal/util"
 )
@@ -34,7 +35,7 @@ func Start(ctx context.Context, req *types.TelegramUpdate) (*types.TelegramRespo
 		Method:      types.TelegramMethodSendMessage,
 		ChatId:      req.Message.Chat.Id,
 		ParseMode:   types.TelegramParseModeHTML,
-		Text:        fmt.Sprintf("Welcome to Digiflazz Bot! Chat ID: <code>%d</code>", req.Message.Chat.Id),
+		Text:        fmt.Sprintf("Welcome to %s! \n\nYour chat ID: <code>%d</code>", config.Cfg.AppName, req.Message.Chat.Id),
 		ReplyMarkup: types.DefaultReplyMarkup,
 	}, nil
 }
