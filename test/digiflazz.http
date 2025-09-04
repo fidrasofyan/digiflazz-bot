@@ -1,0 +1,19 @@
+### Cek saldo
+POST https://api.digiflazz.com/v1/cek-saldo HTTP/1.1
+Content-Type: application/json
+
+{
+  "cmd": "deposit",
+  "username": "username",
+  "sign": "sign"
+}
+
+### Daftar harga
+POST https://api.digiflazz.com/v1/price-list HTTP/1.1
+Content-Type: application/json
+
+{
+  "cmd": "prepaid",
+  "username": "username",
+  "sign": "sign"
+}

@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: digiflazz-bot
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    main: ./cmd/digiflazz-bot
+    ldflags:
+      - -s -w
+      - -X "main.AppVersion={{.Version}}"
+
+changelog:
+  use: github
+  format: "{{.SHA}}: {{.Message}}"
+
+archives:
+  - id: binary
+    formats: [binary]

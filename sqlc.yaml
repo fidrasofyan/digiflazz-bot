@@ -1,0 +1,35 @@
+version: "2"
+sql:
+  - engine: "sqlite"
+    schema: "database/migrations"
+    queries: "database/queries"
+    gen:
+      go:
+        package: "database"
+        out: "database"
+        emit_prepared_queries: true
+        emit_empty_slices: true
+        emit_result_struct_pointers: true
+        emit_params_struct_pointers: true
+        emit_pointers_for_null_types: true
+        overrides:
+          - db_type: "datetime"
+            nullable: true
+            go_type:
+              type: "sql.NullTime"
+              pointer: false
+          - db_type: "datetime"
+            nullable: false
+            go_type:
+              type: "sql.NullTime"
+              pointer: false
+          - db_type: "time"
+            nullable: true
+            go_type:
+              type: "string"
+              pointer: true
+          - db_type: "json"
+            nullable: true
+            go_type:
+              type: "[]byte"
+              pointer: false

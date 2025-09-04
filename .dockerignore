@@ -1,0 +1,16 @@
+data/
+dist/
+test/
+tmp/
+.git/
+.gitignore
+.air.toml
+.dockerignore
+.env*
+.goreleaser.yaml
+compose*
+Dockerfile
+LICENSE
+Makefile
+README.md
+sqlc.yaml

@@ -1,0 +1,14 @@
+### Get webhook info
+GET https://api.telegram.org/bot<token>/getWebhookInfo HTTP/1.1
+
+### Set webhook
+POST https://api.telegram.org/bot<token>/setWebhook HTTP/1.1
+Content-Type: application/json
+
+{
+  "url": "https://domain.com/webhook",
+  "secret_token": "webhook_secret_token",
+  "max_connections": 50,
+  "drop_pending_updates": true,
+  "allowed_updates": ["message", "callback_query"]
+}
