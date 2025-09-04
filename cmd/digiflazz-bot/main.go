@@ -59,9 +59,17 @@ func main() {
 			// Load database
 			database.MustLoadDatabase(mainCtx)
 
-			// Set webhook
+			// Only in production
 			if config.Cfg.AppEnv == "production" {
+				// Set webhook
 				err := cmd.SetTelegramWebhookAndCommands(mainCtx)
+				if err != nil {
+					errCh <- err
+					return
+				}
+
+				// Populate products
+				err = job.PopulateProducts(mainCtx)
 				if err != nil {
 					errCh <- err
 					return
