@@ -30,9 +30,15 @@ var Cfg *Config
 func MustLoadConfig() {
 	godotenv.Load()
 
+	// App timezone
+	if os.Getenv("APP_TIMEZONE") == "" {
+		log.Fatal("missing APP_TIMEZONE")
+	}
+	os.Setenv("TZ", os.Getenv("APP_TIMEZONE"))
+
+	// Telegram allowed ids
 	telegramAllowedIdsStr := strings.Split(os.Getenv("TELEGRAM_ALLOWED_IDS"), ",")
 	telegramAllowedIds := make([]int64, len(telegramAllowedIdsStr))
-
 	for i := range telegramAllowedIdsStr {
 		num, err := strconv.ParseInt(strings.TrimSpace(telegramAllowedIdsStr[i]), 10, 64)
 		if err != nil {
@@ -58,43 +64,43 @@ func MustLoadConfig() {
 
 	// Validate
 	if Cfg.AppEnv == "" {
-		log.Fatalf("missing APP_ENV")
+		log.Fatal("missing APP_ENV")
 	}
 	if Cfg.AppEnv != "development" && Cfg.AppEnv != "production" {
 		log.Fatalf("invalid APP_ENV: %s", Cfg.AppEnv)
 	}
 	if Cfg.AppHost == "" {
-		log.Fatalf("missing APP_HOST")
+		log.Fatal("missing APP_HOST")
 	}
 	if Cfg.AppPort == "" {
-		log.Fatalf("missing APP_PORT")
+		log.Fatal("missing APP_PORT")
 	}
 	if Cfg.TelegramBotToken == "" {
-		log.Fatalf("missing TELEGRAM_BOT_TOKEN")
+		log.Fatal("missing TELEGRAM_BOT_TOKEN")
 	}
 	if len(Cfg.TelegramAllowedIds) == 0 {
-		log.Fatalf("missing TELEGRAM_ALLOWED_IDS")
+		log.Fatal("missing TELEGRAM_ALLOWED_IDS")
 	}
 	if Cfg.DigiflazzBaseUrl == "" {
-		log.Fatalf("missing DIGIFLAZZ_BASE_URL")
+		log.Fatal("missing DIGIFLAZZ_BASE_URL")
 	}
 	if Cfg.DigiflazzUsername == "" {
-		log.Fatalf("missing DIGIFLAZZ_USERNAME")
+		log.Fatal("missing DIGIFLAZZ_USERNAME")
 	}
 	if Cfg.DigiflazzApiKey == "" {
-		log.Fatalf("missing DIGIFLAZZ_API_KEY")
+		log.Fatal("missing DIGIFLAZZ_API_KEY")
 	}
 	if Cfg.DatabaseURL == "" {
-		log.Fatalf("missing DATABASE_URL")
+		log.Fatal("missing DATABASE_URL")
 	}
 	if Cfg.WebhookURL == "" {
-		log.Fatalf("missing WEBHOOK_URL")
+		log.Fatal("missing WEBHOOK_URL")
 	}
 	if Cfg.TelegramWebhookSecretToken == "" {
-		log.Fatalf("missing TELEGRAM_WEBHOOK_SECRET_TOKEN")
+		log.Fatal("missing TELEGRAM_WEBHOOK_SECRET_TOKEN")
 	}
 	if Cfg.DigiflazzWebhookSecretToken == "" {
-		log.Fatalf("missing DIGIFLAZZ_WEBHOOK_SECRET_TOKEN")
+		log.Fatal("missing DIGIFLAZZ_WEBHOOK_SECRET_TOKEN")
 	}
 
 	// Generate Telegram webhook secret

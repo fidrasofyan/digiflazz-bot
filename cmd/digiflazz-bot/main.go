@@ -20,7 +20,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-var AppVersion = "dev"
+var AppVersion = "n/a"
 
 func main() {
 	if len(os.Args) < 2 {
@@ -48,7 +48,13 @@ func main() {
 	switch os.Args[1] {
 	case "start":
 		go func() {
-			log.Printf("Environment: %s - Runtime: %s - App: %s\n", config.Cfg.AppEnv, runtime.Version(), AppVersion)
+			log.Printf(
+				"Environment: %s - Runtime: %s - App: %s - TZ: %s\n",
+				config.Cfg.AppEnv,
+				runtime.Version(),
+				AppVersion,
+				os.Getenv("TZ"),
+			)
 
 			// Load database
 			database.MustLoadDatabase(mainCtx)
