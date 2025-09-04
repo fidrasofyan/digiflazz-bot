@@ -45,7 +45,7 @@ CREATE TABLE prepaid_products (
 CREATE INDEX idx_prepaid_products_category ON prepaid_products(category);
 CREATE INDEX idx_prepaid_products_brand ON prepaid_products(brand);
 CREATE INDEX idx_prepaid_products_type ON prepaid_products(type);
-CREATE UNIQUE INDEX idx_prepaid_products_buyer_sku_code ON prepaid_products(buyer_sku_code);
+CREATE UNIQUE INDEX idx_prepaid_products_buyer_sku_code ON prepaid_products(buyer_sku_code COLLATE NOCASE);
 -- +goose StatementEnd
 
 -- +goose Down

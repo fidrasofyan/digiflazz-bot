@@ -57,7 +57,7 @@ SELECT
   seller_product_status,
   description
 FROM prepaid_products
-WHERE buyer_sku_code = ? 
+WHERE buyer_sku_code = ? COLLATE NOCASE
 LIMIT 1;
 
 -- name: DeleteAllPrepaidProducts :exec
