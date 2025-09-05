@@ -24,7 +24,7 @@ builds:
       - -X "main.AppVersion={{.Version}}"
 
 changelog:
-  use: github
+  use: git
   format: "{{.SHA}}: {{.Message}}"
 
 archives:
