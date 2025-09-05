@@ -153,6 +153,17 @@ func Telegram() fiber.Handler {
 			}
 			return c.Status(200).JSON(resp)
 
+		// Help
+		case "help":
+			resp, err := handler.Help(c.UserContext(), &req)
+			if err != nil {
+				return util.NewError(err)
+			}
+			if resp == nil {
+				return c.Status(200).SendString("OK")
+			}
+			return c.Status(200).JSON(resp)
+
 		// Not found
 		default:
 			// Is it transaction?

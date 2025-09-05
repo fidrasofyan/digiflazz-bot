@@ -22,6 +22,10 @@ func SetTelegramWebhookAndCommands(ctx context.Context) error {
 			Command:     "/start",
 			Description: "Start the bot",
 		},
+		{
+			Command:     "/help",
+			Description: "Show help message",
+		},
 	}
 	err = service.TelegramSetMyCommands(ctx, commands)
 	if err != nil {
