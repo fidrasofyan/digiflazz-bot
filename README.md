@@ -34,6 +34,12 @@ Make sure you have [Go](https://go.dev) installed. The compiled binary will be a
 
 You can also use Docker. See the [Dockerfile](https://github.com/fidrasofyan/digiflazz-bot/blob/main/Dockerfile) and [compose.example.yaml](https://github.com/fidrasofyan/digiflazz-bot/blob/main/compose.example.yaml) for details.
 
+## Screenshots
+
+<img width="300" height="378" alt="welcome" src="https://github.com/user-attachments/assets/57847d73-19a0-4a51-9180-8cedba33bc7e" />
+<img width="300" height="378" alt="product_list" src="https://github.com/user-attachments/assets/8d0720bb-1720-4f78-8f27-f6a63f0793b2" />
+<img width="300" height="378" alt="transaction" src="https://github.com/user-attachments/assets/b1aa795e-667d-4817-891e-18b22a1844e6" />
+
 ## Notes
 
 - This project is unofficial and not affiliated with Digiflazz.
