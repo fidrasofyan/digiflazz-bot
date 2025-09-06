@@ -36,8 +36,8 @@ You can also use Docker. See the [Dockerfile](https://github.com/fidrasofyan/dig
 
 ## Screenshots
 
-<img width="300" height="378" alt="product_list" src="https://github.com/user-attachments/assets/8d0720bb-1720-4f78-8f27-f6a63f0793b2" />
-<img width="300" height="378" alt="transaction" src="https://github.com/user-attachments/assets/b1aa795e-667d-4817-891e-18b22a1844e6" />
+<img width="300" height="378" alt="product_list" src="https://github.com/user-attachments/assets/b3f75cf7-695b-424d-9e22-18ac9cad23cb" />
+<img width="300" height="378" alt="transaction" src="https://github.com/user-attachments/assets/65c3eb71-b54f-416f-9f3a-a32fbd40eb5a" />
 
 ## Notes
 
