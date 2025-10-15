@@ -1,7 +1,7 @@
 package config
 
 import (
-	"log"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -33,7 +33,8 @@ func MustLoadConfig() {
 
 	// App timezone
 	if os.Getenv("APP_TIMEZONE") == "" {
-		log.Fatal("missing APP_TIMEZONE")
+		fmt.Println("missing env variable: APP_TIMEZONE")
+		os.Exit(1)
 	}
 	os.Setenv("TZ", os.Getenv("APP_TIMEZONE"))
 
@@ -43,7 +44,8 @@ func MustLoadConfig() {
 	for i := range telegramAllowedIdsStr {
 		num, err := strconv.ParseInt(strings.TrimSpace(telegramAllowedIdsStr[i]), 10, 64)
 		if err != nil {
-			log.Fatalf("invalid TELEGRAM_ALLOWED_IDS: %s", os.Getenv("TELEGRAM_ALLOWED_IDS"))
+			fmt.Printf("invalid TELEGRAM_ALLOWED_IDS: %s", os.Getenv("TELEGRAM_ALLOWED_IDS"))
+			os.Exit(1)
 		}
 		telegramAllowedIds[i] = num
 	}
@@ -66,53 +68,68 @@ func MustLoadConfig() {
 
 	// Validate
 	if Cfg.AppEnv == "" {
-		log.Fatal("missing APP_ENV")
+		fmt.Println("missing env variable: APP_ENV")
+		os.Exit(1)
 	}
 	if Cfg.AppEnv != "development" && Cfg.AppEnv != "production" {
-		log.Fatalf("invalid APP_ENV: %s", Cfg.AppEnv)
+		fmt.Printf("invalid APP_ENV: %s", Cfg.AppEnv)
+		os.Exit(1)
 	}
 	if Cfg.AppHost == "" {
-		log.Fatal("missing APP_HOST")
+		fmt.Println("missing env variable: APP_HOST")
+		os.Exit(1)
 	}
 	if Cfg.AppPort == "" {
-		log.Fatal("missing APP_PORT")
+		fmt.Println("missing env variable: APP_PORT")
+		os.Exit(1)
 	}
 	if Cfg.AppName == "" {
-		log.Fatal("missing APP_NAME")
+		fmt.Println("missing env variable: APP_NAME")
+		os.Exit(1)
 	}
 	if Cfg.TelegramBotToken == "" {
-		log.Fatal("missing TELEGRAM_BOT_TOKEN")
+		fmt.Println("missing env variable: TELEGRAM_BOT_TOKEN")
+		os.Exit(1)
 	}
 	if len(Cfg.TelegramAllowedIds) == 0 {
-		log.Fatal("missing TELEGRAM_ALLOWED_IDS")
+		fmt.Println("missing env variable: TELEGRAM_ALLOWED_IDS")
+		os.Exit(1)
 	}
 	if Cfg.DigiflazzBaseUrl == "" {
-		log.Fatal("missing DIGIFLAZZ_BASE_URL")
+		fmt.Println("missing env variable: DIGIFLAZZ_BASE_URL")
+		os.Exit(1)
 	}
 	if Cfg.DigiflazzUsername == "" {
-		log.Fatal("missing DIGIFLAZZ_USERNAME")
+		fmt.Println("missing env variable: DIGIFLAZZ_USERNAME")
+		os.Exit(1)
 	}
 	if Cfg.DigiflazzApiKey == "" {
-		log.Fatal("missing DIGIFLAZZ_API_KEY")
+		fmt.Println("missing env variable: DIGIFLAZZ_API_KEY")
+		os.Exit(1)
 	}
 	if Cfg.DatabaseURL == "" {
-		log.Fatal("missing DATABASE_URL")
+		fmt.Println("missing env variable: DATABASE_URL")
+		os.Exit(1)
 	}
 	if Cfg.WebhookURL == "" {
-		log.Fatal("missing WEBHOOK_URL")
+		fmt.Println("missing env variable: WEBHOOK_URL")
+		os.Exit(1)
 	}
 	if Cfg.TelegramWebhookSecretToken == "" {
-		log.Fatal("missing TELEGRAM_WEBHOOK_SECRET_TOKEN")
+		fmt.Println("missing env variable: TELEGRAM_WEBHOOK_SECRET_TOKEN")
+		os.Exit(1)
 	}
 	if Cfg.DigiflazzWebhookSecretToken == "" {
-		log.Fatal("missing DIGIFLAZZ_WEBHOOK_SECRET_TOKEN")
+		fmt.Println("missing env variable: DIGIFLAZZ_WEBHOOK_SECRET_TOKEN")
+		os.Exit(1)
 	}
 
 	// Generate Telegram webhook secret
 	if Cfg.TelegramWebhookSecretToken == "" || Cfg.TelegramWebhookSecretToken == "auto" {
 		secretToken, err := util.GenerateSecretToken(32)
 		if err != nil {
-			log.Fatalf("failed to generate secret token: %v", err)
+			fmt.Printf("failed to generate secret token: %v", err)
+			os.Exit(1)
 		}
 		Cfg.TelegramWebhookSecretToken = secretToken
 	}

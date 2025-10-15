@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
@@ -22,7 +23,7 @@ func RefreshProducts(ctx context.Context, req *types.TelegramUpdate) (*types.Tel
 			err = service.TelegramSendMessage(ctxWithTimeout, &service.TelegramSendMessageParams{
 				ChatId:    req.Message.Chat.Id,
 				ParseMode: service.TelegramParseModeHTML,
-				Text:      "Produk gagal diperbarui",
+				Text:      fmt.Sprintf("Produk gagal diperbarui. %v", err),
 			})
 			if err != nil {
 				log.Printf("Error sending message: %v", err)
