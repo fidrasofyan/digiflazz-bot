@@ -5,4 +5,4 @@ LDFLAGS := -s -w \
 
 build:
 	staticcheck ./...
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "$(LDFLAGS)" -o $(BINARY) ./cmd/digiflazz-bot
+	CGO_ENABLED=0 go build -ldflags "$(LDFLAGS)" -o $(BINARY) ./cmd/digiflazz-bot
